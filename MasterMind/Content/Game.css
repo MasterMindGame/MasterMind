@@ -1,0 +1,88 @@
+﻿body {
+}
+
+table {
+    padding: 0;
+    margin: 0;
+}
+
+.clearfloat {
+    clear: both;
+}
+
+#gameBoard {
+    width: 400px;
+    min-height: 550px;
+    margin: auto;
+    padding: 10px;
+    background-image: url('../Image/WoodBAckground.jpg');
+}
+
+.color-selector {
+    background-color: rgba(246, 191, 152, 0.23);
+    float: left;
+    margin-top: 10px;
+    min-width: 200px;
+    min-height: 60px;
+    border: 2px solid;
+    border-radius: 15px;
+}
+
+.color-selector div {
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        float: left;
+        font-weight: bold;
+        border:2px solid;
+        border-radius: 10px;
+    }
+
+
+.board-row-result {
+    border: 2px solid;
+    border-radius: 15px;
+    min-width: 60px;
+    min-height: 60px;
+    float: left;
+    padding: 5px;
+}
+
+
+.board-row-result div {
+        margin: 2px;
+        font-weight: bold;
+        border-radius: 5px;
+    }
+
+.board-row-result div:nth-child(n) {
+    float: left;
+}
+
+.board-row-result div:nth-child(2n+3) {
+    clear: both;
+    float: left;
+}
+
+.board-row {
+    border: 2px solid;
+    border-radius: 15px;
+    float: left;
+    margin-right: 10px;
+    min-width: 200px;
+    min-height: 60px;
+}
+
+.board-row div {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    float: left;
+    font-weight: bold;
+    border:2px solid;
+    border-radius: 10px;
+}
+
+.board-cell {
+    width: 20px;
+}
