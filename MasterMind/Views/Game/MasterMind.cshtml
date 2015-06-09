@@ -1,17 +1,22 @@
 ﻿@model MasterMind.Controllers.MasterMindBoard
+<div id="timer">
+
+</div>
 <div id="gameBoard">
 
-    @for (var rowIndex = 1; rowIndex <= Model.InitialRowsCount; rowIndex++ )
+    @for (var rowIndex = 0; rowIndex <= Model.InitialRowsCount; rowIndex++ )
     {
-    <div class="GameSection ">
-        <div class="board-row" id="row_@rowIndex">
+    var display = rowIndex == 0 ? "none;" : "";
+    var rowIdMaker = rowIndex == 0 ? "@@" : rowIndex.ToString();
+    <div class="GameSection" style="display:@display">
+        <div class="board-row" id="row_@rowIdMaker">
             @for (var colIndex = 1; colIndex <= Model.ColumnCount; colIndex++)
             {
-             string cellId = string.Format("row_{0}_col_{1}", rowIndex, colIndex);
+             string cellId = string.Format("row_{0}_col_{1}", rowIdMaker, colIndex);
             <div id="@cellId" class="board-cell" data-selected-color=""></div>            
             }
         </div>
-        <div class="board-row-result" id="result_row_@rowIndex">
+        <div class="board-row-result" id="result_row_@rowIdMaker">
             <div class="play-action-holder"></div>
         </div>
     </div>
@@ -31,4 +36,5 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/mastermind")
+    @Scripts.Render("~/bundles/jquerytimer")
 }

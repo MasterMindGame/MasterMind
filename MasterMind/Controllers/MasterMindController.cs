@@ -30,7 +30,7 @@ namespace MasterMind.Controllers
             {
                 ColorCount = 5,
                 ColumnCount = 5,
-                InitialRowsCount = 5,
+                InitialRowsCount = 2,
                 ColorPlate = GetGameColors(gameId,5).ToList()
             };
             return Ok(board);
@@ -47,16 +47,17 @@ namespace MasterMind.Controllers
                 return InternalServerError();
             }
         }
+
         private Score CalculateScore(Step step)
         {
           
            var colors= step.SelectedColors.Split(new  char[]{';'}, StringSplitOptions.RemoveEmptyEntries).ToArray();
            string[] gameColors = this.GetGameColors(step.GameId,colors.Length);
-            if (colors.Length != gameColors.Length)
+           if (colors.Length != gameColors.Length)
                throw new ArgumentException("Game Crashed");
 
-            int sameCL = 0;
-            int samC = 0;
+           int sameCL = 0;
+           int samC = 0;
            for (int index = 0; index < colors.Length; index++)
            {
                if(string.Compare(gameColors[index],colors[index],true) == 0)

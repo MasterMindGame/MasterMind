@@ -28,7 +28,7 @@ namespace MasterMind.Controllers
             {
                 ColorCount = 5,
                 ColumnCount = 5,
-                InitialRowsCount = 5,
+                InitialRowsCount = 2,
                 ColorPlate = new List<string>() {"Red","Blue","Green","Yellow" ,"Orange"}
             };
             return View(board);

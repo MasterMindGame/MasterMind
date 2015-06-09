@@ -14,6 +14,9 @@ namespace MasterMind
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerytimer").Include(
+                     "~/Scripts/jquery.timer.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/mastermind").Include(
                        "~/Scripts/MasterMind/mastermind.js"));
 

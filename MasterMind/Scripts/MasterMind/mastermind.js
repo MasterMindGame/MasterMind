@@ -5,6 +5,7 @@
 /// <reference path="jquery.validate.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="ai.0.15.0-build12287.min.js" />
+/// <reference path="jquery.timer.js" />
 $(function () {
 
     //play button template
@@ -32,6 +33,7 @@ $(function () {
                 config.initalRowsCount = data.InitialRowsCount;
                 var resultDiv = '#result_row_' + config.gameStep + ' div.play-action-holder';
                 $(resultDiv).append(playButtonTemplate);
+                $('#timer').timer();
 
             },
             error: function (x, y, z) {
@@ -73,6 +75,17 @@ $(function () {
            play();     
     });
 
+    // extending board by adding new rows to board
+    var extendBoard = function (currentRowsCount, newRowsToBeAdded) {
+        for (var index = 1; index <= newRowsToBeAdded; index++) {
+            var template = $('div.GameSection:first').html();
+            template = template.replace(/@@/g,  (currentRowsCount + index));
+            $(template).insertBefore('.color-selector');
+            $('#gameBoard div.GameSection:last').show();
+        }
+        config.initalRowsCount = currentRowsCount+newRowsToBeAdded;
+    };
+
     //play
     var play = function () {
         $.ajax({
@@ -89,9 +102,15 @@ $(function () {
                 $('#result_row_' + config.gameStep + ' div.play-action-holder').append(result);
                 if (data.Win) {
                     alert('You won.Congragulation!!!!!');
+                    $('#timer').timer('remove');
                 }
-                else {
-                 $('#result_row_' + (config.gameStep+1) + ' div.play-action-holder').append(playButtonTemplate);
+                else
+                { // check if new row should be added to boarf
+                    if (config.gameStep + 1 > config.initalRowsCount)
+                    {
+                        extendBoard(config.initalRowsCount,1);
+                    }
+                    $('#result_row_' + (config.gameStep+1) + ' div.play-action-holder').append(playButtonTemplate);
                 }
 
                 // go to next step
@@ -100,7 +119,7 @@ $(function () {
                 config.currentColumn = 1;
             },
             error: function (x, y, z) {
-                alert('communication failure');
+                alert('Communication failure');
             }
         });
     }
