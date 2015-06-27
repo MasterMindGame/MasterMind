@@ -52,29 +52,40 @@ namespace MasterMind.Controllers
         {
           
            var colors= step.SelectedColors.Split(new  char[]{';'}, StringSplitOptions.RemoveEmptyEntries).ToArray();
-           string[] gameColors = this.GetGameColors(step.GameId,colors.Length);
+           string[] gameColors = this.GetGameColors(step.GameId, colors.Length);
+            bool[] isConsiderd= new bool[colors.Length];
            if (colors.Length != gameColors.Length)
                throw new ArgumentException("Game Crashed");
 
            int sameCL = 0;
-           int samC = 0;
+           int sameC = 0;
            for (int index = 0; index < colors.Length; index++)
            {
-               if(string.Compare(gameColors[index],colors[index],true) == 0)
-                   sameCL++;
-               else
+               if (string.Compare(gameColors[index], colors[index], true) == 0)
                {
-                   
+                   sameCL++;
+                   isConsiderd[index] = true;
                }
-
            }
-           return new Score { SameColor = samC, SameColorAndLoc = sameCL, Win= (sameCL==colors.Length) };
+
+           for (int index = 0; index < colors.Length; index++)
+            {
+                for (int gIndex = 0; gIndex < gameColors.Length; gIndex++)
+                {
+                    if (string.Compare(gameColors[gIndex], colors[index], true) == 0 && !isConsiderd[gIndex])
+                    {
+                        isConsiderd[gIndex] = true;
+                        sameC++;
+                    }
+                }
+            }
+
+           return new Score { SameColor = sameC, SameColorAndLoc = sameCL, Win= (sameCL==colors.Length) };
 
         }
 
         private string[] GetGameColors(string gameId,int colorsCount)
         {
-            
             var availableColors =new List<string> { "RED", "YELLOW", "BLUE", "GREEN", "ORANGE" ,"BLACK"};
             if (colorsCount > availableColors.Count || colorsCount < 2)
                 throw new Exception("Invalid Color count");
