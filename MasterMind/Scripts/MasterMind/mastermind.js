@@ -33,7 +33,7 @@ $(function () {
                 config.initalRowsCount = data.InitialRowsCount;
                 var resultDiv = '#result_row_' + config.gameStep + ' div.play-action-holder';
                 $(resultDiv).append(playButtonTemplate);
-                $('#timer').timer();
+               
 
             },
             error: function (x, y, z) {
@@ -43,6 +43,15 @@ $(function () {
     }
 
     initialize();
+
+    // configure strat button
+    $('#startbutton').click(function() {
+        // hide intro page
+        $('#startGame').hide();
+        // start timer
+        $('#timer').timer();
+        // show game 
+    });
 
     //select color
     $(".color-selector .color-option").click(function () {

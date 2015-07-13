@@ -1,4 +1,9 @@
 ﻿body {
+
+
+     font-family: "Times New Roman", Times, serif;
+          font-style: oblique;
+    font-size: 16px;
 }
 
 table {
@@ -10,17 +15,56 @@ table {
     clear: both;
 }
 
-#gameBoard {
+ 
+#startGame {
+    -ms-opacity: 0.5;
+    opacity: 0.5;
     width: 400px;
-    min-height: 550px;
-    margin: auto;
+     margin: auto;
     padding: 10px;
-    background: url('../Images/WoodBAckground.jpg') repeat-y center center fixed;
+    background-color: #fff;
+    position: absolute;
+    left: 35.2%;
+   min-height: 550px;
+  
+}
+
+
+#startGame #startbutton{
+    
+    font-weight: bold;
+     margin-left: 20%;
+    margin-top: 55%;
+}
+
+
+
+
+#startbutton {
+
+    background-image: url('../Images/StartIcon.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    width: 225px;
+    height: 225px;
+    margin: auto;
+    color:#fff;
+    background-color: red;
+}
+
+#gameBoard {
+       width: 400px;
+     margin: auto;
+    padding: 10px;
+     min-height: 550px;
+     background: url('../Images/WoodBAckground.jpg') repeat-y center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+
+ }
 
 .color-selector {
     background-color: rgba(246, 191, 152, 0.23);

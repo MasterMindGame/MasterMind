@@ -2,34 +2,43 @@
 <div id="timer">
 
 </div>
-<div id="gameBoard">
+<div id="startGame">
 
-    @for (var rowIndex = 0; rowIndex <= Model.InitialRowsCount; rowIndex++ )
+    <input type="button"  value="Start " id="startbutton" />
+
+</div>
+
+<div    id="gameBoard">
+
+    @for (var rowIndex = 0; rowIndex <= Model.InitialRowsCount; rowIndex++)
     {
-    var display = rowIndex == 0 ? "none;" : "";
-    var rowIdMaker = rowIndex == 0 ? "@@" : rowIndex.ToString();
-    <div class="GameSection" style="display:@display">
-        <div class="board-row" id="row_@rowIdMaker">
-            @for (var colIndex = 1; colIndex <= Model.ColumnCount; colIndex++)
-            {
-             string cellId = string.Format("row_{0}_col_{1}", rowIdMaker, colIndex);
-            <div id="@cellId" class="board-cell" data-selected-color=""></div>            
-            }
+        var display = rowIndex == 0 ? "none;" : "";
+        var rowIdMaker = rowIndex == 0 ? "@@" : rowIndex.ToString();
+        <div class="GameSection" style="display: @display">
+            <div class="board-row" id="row_@rowIdMaker">
+                @for (var colIndex = 1; colIndex <= Model.ColumnCount; colIndex++)
+                {
+                    string cellId = string.Format("row_{0}_col_{1}", rowIdMaker, colIndex);
+                    <div id="@cellId" class="board-cell" data-selected-color=""></div>
+                }
+            </div>
+            <div class="board-row-result" id="result_row_@rowIdMaker">
+                <div class="play-action-holder"></div>
+            </div>
         </div>
-        <div class="board-row-result" id="result_row_@rowIdMaker">
-            <div class="play-action-holder"></div>
-        </div>
-    </div>
     }
-   
+
     <br class="clearfloat" />
     <div class="color-selector">
-       @foreach (var item in Model.ColorPlate)
-       {
-        <div class="color-option" style="background-color:@item" data-color="@item"></div>
-       }        
+        @foreach (var item in Model.ColorPlate)
+        {
+            <div class="color-option" style="background-color: @item" data-color="@item"></div>
+        }
     </div>
+    <br/>
 </div>
+<br/>
+<div style="margin: auto;   "></div>
 <script type="text/template" id="playButtonTemplate">
     <input type="button" class="btn-mastermind-play" value="Play" />
 </script>
