@@ -13,6 +13,8 @@ namespace MasterMind
     {
         protected void Application_Start()
         {
+
+            //test comment
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
